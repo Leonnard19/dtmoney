@@ -50,22 +50,33 @@ export const TransactionTypeContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
+`;
 
-  button {
-    height: 4rem;
-    border: 1px solid #d7d7d7;
-    border-radius: 0.25rem;
+const colors = {
+  green: '#33cc95',
+  red: '#e52e4d',
+};
 
-    background: transparent;
+interface RadioBoxProps {
+  isActive: boolean;
+  activeColor: 'green' | 'red';
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.2s;
+export const RadioBox = styled.button<RadioBoxProps>`
+  height: 4rem;
+  border: 1px solid #d7d7d7;
+  border-radius: 0.25rem;
 
-    &:hover {
-      border-color: ${darken(0.1, '#d7d7d7')};
-    }
+  background: ${({ isActive, activeColor }) =>
+    isActive ? transparentize(0.8, colors[activeColor]) : 'transparent'};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: ${darken(0.1, '#d7d7d7')};
   }
 
   img {
